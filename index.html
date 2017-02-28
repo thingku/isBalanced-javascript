@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>isBalanced</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready( function() {
+			function isBalanced(str) {
+				var strArray = str.split('');
+				var objectPairs2 = [ '{}','[]','()' ];
+				var filteredPairsArray = [];
+				if ( strArray.length % 2 === 0   ) {
+					filteredPairsArray = [];
+					var halfArrayTotal = strArray.length / 2;
+					var fullArrayToTal = strArray.length;
+					var numberOfLastArray = strArray.length - parseInt(1);
+					for ( var opening = 0, closing = numberOfLastArray ; opening < halfArrayTotal, closing >= halfArrayTotal ; opening++, closing-- ) {
+						filteredPairsArray.push( strArray[opening] + '' + strArray[closing] );
+					}
+					for ( var key in filteredPairsArray ) {
+						var pair = objectPairs2.indexOf( filteredPairsArray[key] );
+						if ( pair !== -1 ) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				} else {
+					return false;
+				}
+			}
+			console.log( isBalanced( '[<>]' ) );
+			console.log( isBalanced( '[)' ) );
+			console.log( isBalanced( '(]' ) );
+			console.log( isBalanced( '{}()' ) );
+			console.log( isBalanced( '({[{()}]})' ) );
+		} );
+	</script>
+</head>
+<body>
+</body>
+</html>
